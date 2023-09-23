@@ -44,29 +44,36 @@ public class BmpHandlerCore {
 
   public void generateRedToneImage() {
     // Generar imagen con tonalidades de rojo
+      System.out.println("Generando imagen color rojo...");
     generateToneImage("Image-red.bmp", 0);
+      System.out.println("Imagen color rojo generada exitosamente!!!");
   }
 
   public void generateGreenToneImage() {
     // Generar imagen con tonalidades de verde
+      System.out.println("Generando imagen color verde...");
     generateToneImage("Image-green.bmp", 1);
+      System.out.println("Imagen color verde generada exitosamente!!!");
 
   }
 
   public void generateBlueToneImage() {
     // Generar imagen con tonalidades de azul
+      System.out.println("Generando imagen color azul...");
     generateToneImage("Image-blue.bmp", 2);
+      System.out.println("Imagen color azul generada exitosamente!!!");
 
   }
 
   private void generateToneImage(String outputFilename, int colorIndex) {
+
      try {
     FileOutputStream image = new FileOutputStream(outputFilename);
     image.write(header);
 
     for (int y = height - 1; y >= 0; y--) {
       for (int x = 0; x < width; x++) {
-        for (int c = 0; c < 3; c++) {
+        for (int c = 2; c >= 0; c--) {
           if (c == colorIndex) {
             image.write(pixelMatrix[y][x][c]);
           } else {
@@ -76,17 +83,19 @@ public class BmpHandlerCore {
       }
     }
     image.close();
+
  } catch (IOException e) {
         e.printStackTrace();
     }
   }
 
   public void generateSepiaToneImage(String outputFilename) {
+      System.out.println("Generando imagen color serpia...");
    try {
         FileOutputStream imagen = new FileOutputStream(outputFilename);
         imagen.write(header);
 
-        for (int y = 0; y < height; y++) {
+        for (int y = height - 1; y >= 0; y--) {
             for (int x = 0; x < width; x++) {
                 int originalRed = pixelMatrix[y][x][0] & 0xFF;
                 int originalGreen = pixelMatrix[y][x][1] & 0xFF;
@@ -107,6 +116,7 @@ public class BmpHandlerCore {
             }
         }
         imagen.close();
+       System.out.println("Imagen color serpia generada exitosamente!!!");
     } catch (IOException e) {
         e.printStackTrace();
     }

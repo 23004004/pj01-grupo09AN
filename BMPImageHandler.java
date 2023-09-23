@@ -10,11 +10,14 @@ public class BMPImageHandler {
 
         switch (flag) {
             case "-basics":
+                System.out.println("Analizando imagen...");
             BmpHandlerCore image = new BmpHandlerCore(filename);
+            System.out.println("Procesando imagen...");
             image.generateRedToneImage();
                 image.generateGreenToneImage();
                 image.generateBlueToneImage();
             image.generateSepiaToneImage("Image-sepia.bmp");
+            System.out.println("Imagenes generadas exitosamente!!!");
             case "-rotate":
                 // Llamar a los métodos de rotación
                 break;
